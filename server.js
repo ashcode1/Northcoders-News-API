@@ -16,7 +16,8 @@ const {
   postNewCommentToArticle,
   getUserProfile,
   putVoteCount,
-  putCommentVoteCount
+  putCommentVoteCount,
+  deleteComment
 } = require('./controllers/controllers');
 
 mongoose.connect(db, function (err) {
@@ -44,6 +45,8 @@ app.post('/api/articles/:article_id/comments', postNewCommentToArticle);
 
 app.put('/api/articles/:article_id',putVoteCount);
 app.put('/api/comments/:comment_id',putCommentVoteCount);
+
+app.delete('/api/comments/:comment_id',deleteComment)
 
 app.use('/api', function () {});
 
