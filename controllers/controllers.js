@@ -9,20 +9,10 @@ exports.getAllTopics = (req, res) => {
 };
 
 exports.getArticlesByTopic = (req, res) => {
-  const url = req.url.split("/");
-  const title = url[3];
-  Articles.find("articles", function(err, data) {
-    if (err) return res.status(500).send("error (getArticlesByTopics)");
-    const articles = data.filter(article => {
-      if (article.belongs_to === title.toLowerCase())
-        return {
-          topic: article.belongs_to,
-          body: article.body,
-          votes: article.votes,
-          created_by: article.created_by
-        };
-    });
-    res.status(200).json({ topic: articles });
+  const topic = req.params.topic_title;
+  Articles.find({belongs_to: topic}, (err, articles) => {
+    if (err) return res.status(500).json(err);
+    res.json(articles);
   });
 };
 
