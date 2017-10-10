@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "async": "^2.1.4",
+    "async": "^2.4.1",
     "body-parser": "^1.15.2",
     "chance": "^1.0.4",
     "dotenv": "^4.0.0",

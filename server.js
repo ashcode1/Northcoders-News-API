@@ -8,7 +8,7 @@ const config = require('./config');
 const db = config.DB[process.env.NODE_ENV] || process.env.DB;
 const PORT = config.PORT[process.env.NODE_ENV] || process.env.PORT;
 const {getAllTopics} = require('./controllers/controllers');
-const {getAllTopics, getArticlesByTopic, getAllArticles} = require('./controllers/controllers');
+const {getAllTopics, getArticlesByTopic, getAllArticles, getAllCommentsForArticle} = require('./controllers/controllers');
 
 mongoose.connect(db, function (err) {
   if (!err) {
@@ -27,6 +27,7 @@ app.get('/', function (req, res) {
 app.get('/api/topics', getAllTopics);
 app.get('/api/topics/:topic_title/articles', getArticlesByTopic);
 app.get('/api/articles',getAllArticles);
+app.get('/api/articles/:article_id/comments',getAllCommentsForArticle);
 
 app.use('/api', function () {});
 

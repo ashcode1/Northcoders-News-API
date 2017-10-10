@@ -1,4 +1,5 @@
 const { Users, Comments, Topics, Articles } = require("../models/models");
+const { map } = require('async');
 
 exports.getAllTopics = (req, res) => {
   Topics.find({}, (err, topics) => {
@@ -25,10 +26,17 @@ exports.getArticlesByTopic = (req, res) => {
   });
 };
 
-exports.getAllArticles = (req,res) => {
+exports.getAllArticles = (req, res) => {
   Articles.find({}, (err, articles) => {
       if (err) return res.status(500).send("error (getAllArticles)");
       res.status(200).json({ articles: articles });
     });
   };
   
+  exports.getAllCommentsForArticle = (req, res) => {
+    const id = req.params.article_id;
+    Comments.find({belongs_to: id}, (err, comments) => {
+      if (err) return res.status(500).json(err);
+      res.json(comments);
+    });
+  };
