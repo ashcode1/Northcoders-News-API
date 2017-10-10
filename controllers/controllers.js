@@ -45,9 +45,23 @@ exports.getAllArticles = (req, res) => {
   };
   
   exports.getUserProfile = (req, res) => {
-      const username = req.params.username;
-      Users.findOne({username: username}, (err, user) => {
-          if (err) return res.status(500).json(err);
-          res.json(user);
-      })
-  }
+      cconst username = req.params.username;
+      Users.findOne({ username: username }, (err, user) => {
+        if (err) return res.status(500).json(err);
+        res.json(user);
+      });
+    };
+    
+    exports.putVoteCount = (req, res) => {
+      const query = req.query.vote;
+      const id = req.params.article_id;
+      let inc;
+      if (query === 'up') inc = 1;
+      if (query === 'down') inc = -1;
+    
+      Articles.findByIdAndUpdate(id, { $inc: { votes: inc } }, { new: true }, (err, article) => {
+        if (err) return res.status(500).json(err);
+        console.log(article)
+        res.json({ message: article.votes });
+      });
+    };
