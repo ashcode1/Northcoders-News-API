@@ -30,3 +30,14 @@ exports.getAllArticles = (req, res) => {
       res.json(comments);
     });
   };
+
+  exports.postNewCommentToArticle = (req, res) => {
+    const id = req.params.article_id;
+        var comment = new Comments()
+            comment.body = req.body.comment;
+            comment.belongs_to = id;
+    
+    comment.save(function (err, comment) {
+      if (err) console.log(err)
+    }).then(res.send('Comment posted!'))
+  };

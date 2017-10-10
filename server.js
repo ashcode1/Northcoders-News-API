@@ -7,8 +7,13 @@ const app = express();
 const config = require('./config');
 const db = config.DB[process.env.NODE_ENV] || process.env.DB;
 const PORT = config.PORT[process.env.NODE_ENV] || process.env.PORT;
-const {getAllTopics} = require('./controllers/controllers');
-const {getAllTopics, getArticlesByTopic, getAllArticles, getAllCommentsForArticle} = require('./controllers/controllers');
+
+const {
+  getAllTopics, 
+  getArticlesByTopic, 
+  getAllArticles, 
+  getAllCommentsForArticle
+} = require('./controllers/controllers');
 
 mongoose.connect(db, function (err) {
   if (!err) {
@@ -19,6 +24,7 @@ mongoose.connect(db, function (err) {
 });
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get('/', function (req, res) {
   res.status(200).send('All good!');
@@ -28,6 +34,8 @@ app.get('/api/topics', getAllTopics);
 app.get('/api/topics/:topic_title/articles', getArticlesByTopic);
 app.get('/api/articles',getAllArticles);
 app.get('/api/articles/:article_id/comments',getAllCommentsForArticle);
+
+app.post('/api/articles/:article_id/comments', postNewCommentToArticle);
 
 app.use('/api', function () {});
 
