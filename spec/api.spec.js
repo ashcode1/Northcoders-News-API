@@ -7,15 +7,15 @@ const saveTestData = require("../seed/test.seed");
 // const db = config.DB[process.env.NODE_ENV] || process.env.DB;
 const mongoose = require("mongoose");
 
-describe("API", function() {
+describe('API', function () {
   let usefulData;
-  beforeEach(done => {
-    mongoose.connection
-      .dropDatabase()
+  beforeEach(function (done) {
+    this.timeout(0);
+    mongoose.connection.dropDatabase()
       .then(saveTestData)
       .then(data => {
         usefulData = data;
-        console.log(`Useful data: ${Object.keys(usefulData)}`);
+        console.log(usefulData);
         done();
       })
       .catch(done);
