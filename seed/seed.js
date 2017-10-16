@@ -42,7 +42,7 @@ function addNorthcoderUser(done) {
     {
       username: 'northcoder',
       name: 'Awesome Northcoder',
-      avatar_url: 'https://avatars3.githubusercontent.com/u/6791502?v=3&s=200'
+      avatar_url: 'https://yt3.ggpht.com/-uoU99GYs4aQ/AAAAAAAAAAI/AAAAAAAAAAA/OjC27nIHKMk/s900-c-k-no-mo-rj-c0xffffff/photo.jpg'
     }
   );
   userDoc.save(function (err) {

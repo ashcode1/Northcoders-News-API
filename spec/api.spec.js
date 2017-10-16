@@ -62,6 +62,16 @@ describe('API', function () {
         });
     });
   });
+  describe("GET /api/users/:user", () => {
+    it("responds with user profile of a certain user", done => {
+      request(server).get("/api/users/tickle122").end((err, res) => {
+        expect(res.status).to.equal(200);
+        expect(res.body).to.be.an("array");
+        expect(res.body.username).to.equal("tickle122");
+        done();
+      });
+    });
+  });
   describe("POST /api/articles/:article_id/comments", () => {
     it("should post a comment to a particular article", done => {
       request(server)

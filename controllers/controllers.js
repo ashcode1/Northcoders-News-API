@@ -58,6 +58,18 @@ exports.postNewCommentToArticle = (req, res, next) => {
     .catch(console.log);  
 };
 
+exports.getAllUsers = (req, res, next) => {
+  Users.find({}, (err, users) => {
+    if (!users.length) {
+      return next({status: 404, message: 'Users not found'});
+    }
+    if (err) {
+      return next(err);
+    }
+    res.json({users});
+  });
+}
+
 exports.getUserProfile = (req, res, next) => {
   const username = req.params.username;
   Users.findOne({ username: username }, (err, user) => {
