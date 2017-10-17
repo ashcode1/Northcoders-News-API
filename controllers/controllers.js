@@ -1,4 +1,4 @@
-const { Users, Comments, Topics, Articles } = require("../models/models");
+const { Users, Comments, Topics, Articles, Article } = require("../models/models");
 
 exports.getAllTopics = (req, res, next) => {
   Topics.find({}, (err, topics) => {
@@ -29,6 +29,20 @@ exports.getAllArticles = (req, res, next) => {
     }
     res.status(200).json({ articles: articles });
   });
+};
+
+exports.getArticle = (req, res) => {
+  const id = req.params.article_id;
+  Articles.findById(id)
+    .then((article) => {
+      if (!article) res.status(404).json({message: 'Article not found'});
+      res.status(200).json({
+        article,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({ err });
+    });
 };
 
 exports.getAllCommentsForArticle = (req, res, next) => {
