@@ -31,19 +31,51 @@ exports.getAllArticles = (req, res, next) => {
   });
 };
 
-exports.getArticle = (req, res) => {
-  const id = req.params.article_id;
-  Articles.findById(id)
+exports.getArticle = (req, res, next) => {
+  const articleId = req.params.article_id;
+  let article;
+  Articles.findById(articleId)
+
+    .then((articleDoc) => {
+      if (articleDoc === null) {
+        return next ({ status: 404, message: 'Article not found'});
+      }
+      article = articleDoc.toObject();   
+      return Users.findOne({ username: article.created_by }); 
+    })
+
+    .then((user) => {
+      return Object.assign({}, article, {
+        avatar_url: user.avatar_url
+      });
+      console.log(avatar_url);
+    })
+
     .then((article) => {
-      if (!article) res.status(404).json({message: 'Article not found'});
+
       res.status(200).json({
-        article,
+        article
       });
     })
+
     .catch((err) => {
       res.status(500).json({ err });
     });
 };
+
+// exports.getArticle = (req, res) => {
+//   const id = req.params.article_id;
+//   Articles.findById(id)
+//     .then((article) => {
+//       if (!article) res.status(404).json({message: 'Article not found'});
+//       res.status(200).json({
+//         article,
+//       });
+//     })
+//     .catch((err) => {
+//       res.status(500).json({ err });
+//     });
+// };
 
 exports.getAllCommentsForArticle = (req, res, next) => {
   const id = req.params.article_id;
