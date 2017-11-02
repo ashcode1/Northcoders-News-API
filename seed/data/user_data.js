@@ -1,8 +1,8 @@
 module.exports = [
-  {username: 'tickle122', name: 'Tom Tickle', avatar_url: 'http://www.spiritsurfers.net/monastery/wp-content/uploads/_41500270_mrtickle.jpg'},
-  {username: 'grumpy19', name: 'Paul Grump', avatar_url: 'http://www.tumbit.com/profile-image/4/original/mr-grumpy.jpg'},
-  {username: 'happyamy2016', name: 'Amy Happy', avatar_url: 'http://vignette1.wikia.nocookie.net/mrmen/images/7/7f/Mr_Happy.jpg/revision/latest?cb=20140102171729'},
-  {username: 'cooljmessy', name: 'Peter Messy', avatar_url: 'http://i.imgur.com/WfX0Neu.jpg'},
-  {username: 'weegembump', name: 'Gemma Bump', avatar_url: 'http://www.upandrunning.co.uk/media/catalog/product/cache/1/image/650x/040ec09b1e35df139433887a97daa66f/m/r/mr-bump.jpg'},
-  {username: 'jessjelly', name: 'Jess Jelly', avatar_url: 'https://s-media-cache-ak0.pinimg.com/564x/39/62/ec/3962eca164e60cf46f979c1f57d4078b.jpg'}
+  {username: 'tickle122', name: 'Tom Tickle', avatar_url: 'http://agi-cd.com/index_fichiers/mama.jpg'},
+  {username: 'grumpy19', name: 'Paul Grump', avatar_url: 'https://www.faadooengineers.com/customprofilepics/profilepic862562_1.gif'},
+  {username: 'happyamy2016', name: 'Amy Happy', avatar_url: 'https://media.licdn.com/media/p/1/000/214/0e8/246dcff.jpg'},
+  {username: 'cooljmessy', name: 'Peter Messy', avatar_url: 'http://chopemaster.com/wp-content/uploads/2014/06/tyokie.png'},
+  {username: 'weegembump', name: 'Gemma Bump', avatar_url: 'http://inkleined-to-teach.com/wp-content/uploads/2013/11/avatar.png'},
+  {username: 'jessjelly', name: 'Jess Jelly', avatar_url: 'http://eurolot.ru/image/data/blogs/4.jpg'}
 ];
