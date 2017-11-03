@@ -125,7 +125,7 @@ You should now be able to see the homescreen in the browser.
 
 ## Running the tests
 
-Open a new shell in the frontend directory and run the following command:Tests
+Open a new shell in the frontend directory and run the following command:
 
 ```
 $ npm test
