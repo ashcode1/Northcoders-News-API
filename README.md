@@ -2,13 +2,38 @@
 
 Northcoders News is a social news aggregation, web content rating and discussion website similar to Reddit.
 
+[LIVE DEMO](https://nc-news-fe.herokuapp.com/)
+
+The articles that make up this site are divided into topics: Football, Cooking and Coding.
+
+* Each article has user curated ratings and can be up or down voted using the arrows.
+
+* Users can add comments about an article and those comments can be up or down voted.
+
+* A user can also add comments and remove comments, but only their own. If you try to delete another user's comment you will be denied access!
+
+### Routes
+
+| Route |   |
+| ------|---|
+| `GET /api/topics` | Get all the topics |
+| `GET /api/topics/:topic_id/articles` | Return all the articles for a certain topic |
+| `GET /api/articles` | Returns all the articles |
+| `GET /api/articles/:article_id/comments` | Get all the comments for a individual article |
+| `POST /api/articles/:article_id/comments` | Add a new comment to an article. This route requires a JSON body with a comment key and value pair e.g: {"comment": "This is my new comment"} |
+| `PUT /api/articles/:article_id` | Increment or Decrement the votes of an article by one. This route requires a vote query of 'up' or 'down' e.g: /api/articles/:article_id?vote=up |
+| `PUT /api/comments/:comment_id` | Increment or Decrement the votes of a comment by one. This route requires a vote query of 'up' or 'down' e.g: /api/comments/:comment_id?vote=down |
+| `DELETE /api/comments/:comment_id` | Deletes a comment |
+| `GET /api/users/:username` | Returns a JSON object with the profile data for the specified user. |
+
+
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 ### Prerequisites
 
-To install this programme you will first need a commandline terminal such as **iTerm2** (for Mac) or **Terminator** (Linux/Unbuntu/Fedora) - or something similar. For more info on using the commandline see this blog article: (https://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything)
+To install this programme you will first need a commandline terminal such as **iTerm2** (for Mac) or **Terminator** (Linux/Unbuntu/Fedora) - or something similar. For more info on using the commandline see this [blog article](https://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything)
 
 You will then need to install the following:
 
@@ -22,7 +47,7 @@ Check if Node.js is already installed by typing the following into the commandli
 $ node -v 
 ```
 
-To install Node.js follow these instructions: (https://nodejs.org/en/download/package-manager/#osx)
+To install Node.js follow these [instructions](https://nodejs.org/en/download/package-manager/#osx)
 
 Check if NPM is installed:
 
@@ -30,18 +55,16 @@ Check if NPM is installed:
 $ npm -v
 ```
 
-To install NPM follow these instructions: 
-(https://docs.npmjs.com/getting-started/installing-node)
+To install NPM follow these [instructions](https://docs.npmjs.com/getting-started/installing-node)
 
 ### Installing Northcoders News
 
-(Northcoders News consist of two aptly named parts: 
+(Northcoders News consists of two aptly named parts: 
 
-* "Northcoders-News-Back-End" - a backend REST API 
-  (https://github.com/ashcode1/Northcoders-News-API)   
+* ["Northcoders-News-Back-End"](https://github.com/ashcode1/Northcoders-News-API) - a backend REST API    
 
-* "Northcoders-News-Front-End" - frontend user interface
-  (https://github.com/ashcode1/Northcoders-News-Front-End)
+* ["Northcoders-News-Front-End"](https://github.com/ashcode1/Northcoders-News-Front-End) - a frontend user interface
+  
 
 To get these up and running you will need to clone both repositories onto your machine. Then you will need to keep three shells running in your terminal to run the backend database and server, and also the frontend server. Follow the instructions below:
 
@@ -118,13 +141,13 @@ $ npm test
 
 ## Authors
 
-* **Ashley Hopkins** - (https://github.com/ashcode1)
+* **Ashley Hopkins** - [github](https://github.com/ashcode1)
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License
 
 ## Acknowledgments
 
-* The Underscore team for building an awsome JavaScript library! (https://github.com/jashkenas/underscore)
-* The Northcoders team for setting the challenge of re-implementing the Underscore library in natvie JavaScript!
+
+* The [Northcoders](https://northcoders.com/start-coding?ads_cmpid=949839241&ads_adid=47028772797&ads_matchtype=b&ads_network=g&ads_creative=228828910521&utm_term=northcoders&ads_targetid=kwd-375530169794&utm_campaign=&utm_source=adwords&utm_medium=ppc&ttv=2&gclid=Cj0KCQjwp_DPBRCZARIsAGOZYBT3fLL0ytyxD4YrK04zMgVM0T8YqqXfcIeKyjTQ61QL3UEpZk1K_ToaAmiCEALw_wcB) team for setting the challenge of this project and for creating and supporting an amazing network of developers in the north 
