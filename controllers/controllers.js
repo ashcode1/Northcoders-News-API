@@ -1,4 +1,6 @@
-const { Users, Comments, Topics, Articles, Article } = require("../models/models");
+/* eslint-disable no-console */
+
+const { Users, Comments, Topics, Articles } = require('../models/models');
 
 exports.getAllTopics = (req, res, next) => {
   Topics.find({}, (err, topics) => {
@@ -48,7 +50,6 @@ exports.getArticle = (req, res, next) => {
       return Object.assign({}, article, {
         avatar_url: user.avatar_url
       });
-      console.log(avatar_url);
     })
 
     .then((article) => {
@@ -63,20 +64,6 @@ exports.getArticle = (req, res, next) => {
     });
 };
 
-// exports.getArticle = (req, res) => {
-//   const id = req.params.article_id;
-//   Articles.findById(id)
-//     .then((article) => {
-//       if (!article) res.status(404).json({message: 'Article not found'});
-//       res.status(200).json({
-//         article,
-//       });
-//     })
-//     .catch((err) => {
-//       res.status(500).json({ err });
-//     });
-// };
-
 exports.getAllCommentsForArticle = (req, res, next) => {
   const id = req.params.article_id;
   Comments.find({ belongs_to: id }, (err, comments) => {
@@ -90,7 +77,7 @@ exports.getAllCommentsForArticle = (req, res, next) => {
   });
 };
 
-exports.postNewCommentToArticle = (req, res, next) => {
+exports.postNewCommentToArticle = (req, res) => {
   const id = req.params.article_id;
   var comment = new Comments();
   comment.body = req.body.comment;
@@ -114,7 +101,7 @@ exports.getAllUsers = (req, res, next) => {
     }
     res.json({users});
   });
-}
+};
 
 exports.getUserProfile = (req, res, next) => {
   const username = req.params.username;
@@ -133,8 +120,8 @@ exports.putVoteCount = (req, res, next) => {
   const query = req.query.vote;
   const id = req.params.article_id;
   let inc;
-  if (query === "up") inc = 1;
-  if (query === "down") inc = -1;
+  if (query === 'up') inc = 1;
+  if (query === 'down') inc = -1;
 
   Articles.findByIdAndUpdate(
     id,
@@ -153,8 +140,8 @@ exports.putCommentVoteCount = (req, res, next) => {
   const query = req.query.vote;
   const id = req.params.comment_id;
   let inc;
-  if (query === "up") inc = 1;
-  if (query === "down") inc = -1;
+  if (query === 'up') inc = 1;
+  if (query === 'down') inc = -1;
 
   Comments.findByIdAndUpdate(
     id,
@@ -175,6 +162,6 @@ exports.deleteComment = (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.json({message: "Your comment has been deleted."});
+    res.json({message: 'Your comment has been deleted.'});
   });
 };

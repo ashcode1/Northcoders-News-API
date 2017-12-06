@@ -15,7 +15,7 @@ router.use('/articles', articlesRouter);
 router.route('/users/:username').get(getUserProfile);
 router.route('/users').get(getAllUsers);
 router.route('/comments/:comment_id')
-    .put(putCommentVoteCount)
-    .delete(deleteComment);
+  .put(putCommentVoteCount)
+  .delete(deleteComment);
 
 module.exports = router;

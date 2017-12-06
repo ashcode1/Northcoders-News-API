@@ -4,13 +4,13 @@
   "description": "### Background",
   "main": "config.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha ./spec",
-    "start": "nodemon server.js",
+    "test": "mocha ./test/",
+    "start": "NODE_ENV=production node ./start.js",
+    "dev": "NODE_ENV=dev nodemon ./start.js",
     "lint": "eslint ./",
-    "posttest": "npm run lint",
-    "precommit": "npm test",
-    "prepush": "npm test",
-    "...": "..."
+    "seed:production": "NODE_ENV=production node seed/seed.js",
+    "seed:dev": "NODE_ENV=dev node seed/seed.js",
+    "seed:test": "NODE_ENV=test node seed/seed.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,17 +18,18 @@
     "async": "^2.4.1",
     "body-parser": "^1.15.2",
     "chance": "^1.0.4",
-    "dotenv": "^4.0.0",
     "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "log4js": "^1.0.1",
     "moment": "^2.17.0",
     "mongoose": "^4.7.0",
+    "morgan": "^1.9.0",
     "underscore": "^1.8.3"
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^4.8.0",
+    "eslint": "^4.12.1",
     "mocha": "^4.0.1",
     "supertest": "^3.0.0"
   }

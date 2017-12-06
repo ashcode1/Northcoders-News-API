@@ -1,3 +1,7 @@
+/* eslint-disable no-console */
+if (!process.env.NODE_ENV) process.env.NODE_ENV = 'dev';
+require('dotenv').config({ path: `./.${process.env.NODE_ENV}.env` });
+
 const models = require('../models/models');
 const userData = require('./data/user_data.js');
 const articleData = require('./data/articles');
@@ -9,11 +13,10 @@ const mongoose = require('mongoose');
 const log4js = require('log4js');
 const logger = log4js.getLogger();
 const moment = require('moment');
-const DBs = require('../config').DB;
 
-mongoose.connect(DBs.dev, function (err) {
+mongoose.connect(process.env.DB_URI, {useMongoClient: true}, function (err) {
   if (!err) {
-    logger.info(`connected to database ${DBs.dev}`);
+    logger.info(`connected to database ${process.env.DB_URI}`);
     mongoose.connection.db.dropDatabase();
     async.waterfall([
       addUsers,
@@ -95,7 +98,6 @@ function addTopics(done) {
 
 function addArticles(topicDocs, done) {
   logger.info('adding articles');
-  // will be a big array of strings
   const docIds = [];
   async.eachSeries(topicDocs, function (topic, cb) {
     const articles = articleData[topic.slug];
@@ -170,8 +172,8 @@ function addComments(docIds, done) {
 function getRandomStamp() {
   return new Date (
     moment().subtract(_.sample(_.range(1,7)), 'days')
-    .subtract(_.sample(_.range(1,24)), 'hours')
-    .subtract(_.sample(_.range(1,60)), 'minutes')
-    .format()
+      .subtract(_.sample(_.range(1,24)), 'hours')
+      .subtract(_.sample(_.range(1,60)), 'minutes')
+      .format()
   ).getTime();
 }

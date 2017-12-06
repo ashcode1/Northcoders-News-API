@@ -1,12 +1,13 @@
 const router = require('express').Router();
+
 const {
   getAllTopics, 
   getArticlesByTopic
 } = require('../controllers/controllers');
 
 router.route('/')
-    .get(getAllTopics);
+  .get(getAllTopics);
 router.route('/:topic_title/articles')
-    .get(getArticlesByTopic);
+  .get(getArticlesByTopic);
 
 module.exports = router;
